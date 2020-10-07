@@ -14,19 +14,23 @@ nQueens1(N,RCs):-
     no_attack(RCs).
 
 range(N,N,[N]).
-range(M,N, [M| RangeMp1 ] ):-
+range(M,N,[M|RMp1]):-
     M<N,
     Mp1 is M+1,
-    range(Mp1,N,RangeMp1).
+    range(Mp1,N,RMp1).
 
-zip(_,[],[]).
-zip([],_,[]).
-zip( [G|S], [H|T], [ [G,H] | ZipTails ] ) :- zip(S,T,ZipTails).
+
+
+zip([],[],[]).
+zip([],L,[]):-length(L,Len), Len > 0.
+zip(L,[],[]):-length(L,Len), Len > 0.
+zip( [G|S], [H|T], [ [G,H]| ZipTails] ):-
+    zip(S,T,ZipTails).
 
 no_attack([_]).
-no_attack( [P|Ps]) :-
-    \+ (member(Q,Ps),attack(P,Q)),
-    no_attack(Ps).
+no_attack( [Q|Qs] ):-
+    \+ (member(M,Qs),attack(Q,M)) ,
+    no_attack(Qs).
 
 attack([X1,Y1],[X2,Y2] ):- Y1-X1 =:= Y2-X2.
 attack([X1,Y1],[X2,Y2] ):- Y1+X1 =:= Y2+X2.
