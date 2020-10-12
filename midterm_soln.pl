@@ -131,7 +131,7 @@ tables(Adam, Barb, Charlie, Donna, Edward, Francis, George, Hilda) :-
     \+ Adam=Francis,
     \+ Donna=Edward.
 
-%smarter -- use 2-item list "tuples", solve using constraints-first
+%smarter -- solve using constraints-first
 %domain -- probably will give you this
 tables(table1). tables(table2).
 
